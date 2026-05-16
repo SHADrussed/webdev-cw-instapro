@@ -7,9 +7,6 @@ const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 export function getPosts({ token }) {
   return fetch(postsHost, {
     method: "GET",
-    headers: {
-      Authorization: token,
-    },
   })
     .then((response) => {
       if (response.status === 401) {
@@ -19,6 +16,8 @@ export function getPosts({ token }) {
       return response.json();
     })
     .then((data) => {
+      console.log(data);
+
       return data.posts;
     });
 }
