@@ -1,3 +1,4 @@
+import { sanitize } from "../index.js";
 import { renderHeaderComponent } from "./header-component.js";
 import { renderUploadImageComponent } from "./upload-image-component.js";
 
@@ -54,7 +55,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
 
     document.getElementById("add-button").addEventListener("click", () => {
       onAddPostClick({
-        description: document.getElementById("description").value,
+        description: sanitize(document.getElementById("description").value),
         imageUrl: imageUrl,
       });
     });

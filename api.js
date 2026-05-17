@@ -7,6 +7,9 @@ const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 export function getPosts({ token }) {
   return fetch(postsHost, {
     method: "GET",
+    headers: {
+      Authorization: token,
+    },
   })
     .then((response) => {
       if (response.status === 401) {
@@ -19,6 +22,69 @@ export function getPosts({ token }) {
       console.log(data);
 
       return data.posts;
+    });
+}
+
+export function getUserPosts({ token, id }) {
+  return fetch(postsHost + `/user-posts/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (response.status === 401) {
+        throw new Error("Нет авторизации");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+
+      return data.posts;
+    });
+}
+
+export function postLike({ token, id }) {
+  return fetch(postsHost + `/${id}/like`, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (response.status === 401) {
+        throw new Error("Нет авторизации");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+
+      return data;
+    });
+}
+
+export function dislikePost({ token, id }) {
+  return fetch(postsHost + `/${id}/dislike`, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (response.status === 401) {
+        throw new Error("Нет авторизации");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+
+      return data;
     });
 }
 
