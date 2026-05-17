@@ -4,8 +4,16 @@ import { posts, goToPage } from "../index.js";
 import { formatDistanceToNow } from "https://cdn.skypack.dev/date-fns";
 import { ru } from "https://cdn.skypack.dev/date-fns/locale";
 
-export function renderPostsPageComponent({ appEl }) {
+export function renderPostsPageComponent({ appEl, userId: none }) {
   // @TODO: реализовать рендер постов из api
+
+  // if (userId) {
+  //   posts.forEach(post => {
+  //     if (post.user.) {
+
+  //     }
+  //   });
+  // }
 
   console.log("Актуальный список постов:", posts);
 
