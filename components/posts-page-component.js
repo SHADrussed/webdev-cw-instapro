@@ -1,8 +1,8 @@
 import { USER_POSTS_PAGE } from "../routes.js";
 import { renderHeaderComponent } from "./header-component.js";
 import { posts, goToPage, getToken, setPosts } from "../index.js";
-import { formatDistanceToNow } from "https://esm.sh/date-fns";
-import { ru } from "https://esm.sh/date-fns/locale";
+import { formatDistanceToNow } from "https://esm.run/date-fns";
+import { ru } from "https://esm.run/date-fns/locale";
 import { dislikePost, getPosts, getUserPosts, postLike } from "../api.js";
 
 export function renderPostsPageComponent({ appEl }) {
@@ -40,7 +40,12 @@ export function renderPostsPageComponent({ appEl }) {
                                   ${post.description}
                                 </p>
                                 <p class="post-date">
-                                  ${formatDistanceToNow(post.createdAt, { locale: ru })} назад
+                                  ${formatDistanceToNow(
+                                    new Date(post.createdAt),
+                                    {
+                                      locale: ru,
+                                    },
+                                  )} назад
                                 </p>
                               </li>
               `;
@@ -115,7 +120,9 @@ export function renderUserPostsPageComponent({ appEl }) {
                       ${post.description}
                     </p>
                     <p class="post-date">
-                      ${formatDistanceToNow(post.createdAt, { locale: ru })} назад
+                      ${formatDistanceToNow(new Date(post.createdAt), {
+                        locale: ru,
+                      })} назад
                     </p>
                   </li>
               `;
